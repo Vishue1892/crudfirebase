@@ -18,12 +18,17 @@
                 <div class="card">
                     <div class="card-body">
                         <h1 class="h4">Añadir tarea</h1>
-                        <form id="task-form">
-                            <label for="title">Title:</label>
-                            <input class="form-control mb-3" type="text" placeholder="Task Title" id="task-title">
-                            <label for="description">Description:</label>
-                            <textarea class="form-control mb-3" id="task-description" rows="3" placeholder="task-description"></textarea>
-                            <button class="btn btn-primary" id="btn-task-save">Save</button>
+                         <form action="" id="task-form" class="box">
+                            <label for="task-title">Title:</label>
+                            <input type="text" name="task-title" id="task-title" class="input" placeholder="Title">
+                            <label for="task-description">Descripción:</label>
+                            <textarea 
+                                class="textarea my-1"
+                                name="task-description" 
+                                id="task-description" 
+                                placeholder="Task Descripción" rows="5"></textarea>
+                                <input type="file" name="file-task" id="file-task">
+                            <button id="btn-task-save" class="button is-success">Save</button>
                         </form>
                     </div>
                 </div>

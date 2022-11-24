@@ -9,11 +9,11 @@ import {
   onSnapshot,
   doc,
   getDoc,
-  updateDoc 
+  updateDoc, 
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js"
+import {getStorage, ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -30,6 +30,8 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore()
 
+const storage = getStorage();
+
 export const saveTask = (title, description) => 
     addDoc(collection(db,"tasks"),{title,description});
 
@@ -37,8 +39,17 @@ export const getTasks = () => getDocs(collection(db,'tasks'))
 
 export const onGetTasks =  (callback) => onSnapshot(collection(db,'tasks'),callback)
 
-export const deleteTasks = id => deleteDoc(doc(db,'tasks',id))
+export const deleteTask = id => deleteDoc(doc(db,'tasks',id))
 
 export const getTask = id => getDoc(doc(db,'tasks',id)) 
 
 export const updateTask = (id,newFields) => updateDoc(doc(db,'tasks',id),newFields) 
+
+export const saveImage = file =>{
+  const storageRef = ref(storage, `images/${file.name}`);
+
+  //
+  uploadBytes(storageRef, file).then((snapshot) =>{
+    console.log('Uploaded a blob or file!');
+  })
+}
