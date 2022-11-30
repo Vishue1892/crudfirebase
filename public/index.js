@@ -27,10 +27,10 @@ const saveSubmit = (e) => {
 e.preventDefault();
 const title = formTask['task-title'].value;
 const description = formTask['task-description'].value;
-
+const imageUrl=document.querySelector('#image').src;
 if(title.length > 3 && description.length > 3){
 if(!editStatus){
-    saveTask(title, description);   
+    saveTask(title, description, imageUrl);   
 } else {
     updateTask(idForEdit, {
         'title': title, 'description': description
@@ -61,7 +61,7 @@ onGetTasks(querySnapshot => {
     const div = document.createElement('div');
     querySnapshot.forEach(doc => {
         const task = doc.data();
-        div.appendChild(card(doc.id, task.title, task.description))
+        div.appendChild(card(doc.id, task.title, task.description, task.imageUrl))
     });
     taskContainer.appendChild(div);
 });
